@@ -59,45 +59,32 @@ const dingTalkDao = {
       if (atUid != null) {
         uidArr = atUid;
       }
-
-      console.log(123, JSON.stringify({
-        msgtype: "markdown",
-        markdown: {
-          title: `${title}`,
-          text: content,
-        },
-        at: {
-          atMobiles: [""],
-          atUserIds: uidArr,
-          isAtAll: isAtAll,
-        },
-      }))
       // 2. send request
       // 发送请求
-        // fetch(group, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Accept: "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     msgtype: "markdown",
-        //     markdown: {
-        //       title: `${title}`,
-        //       text: content,
-        //     },
-        //     at: {
-        //       atMobiles: [""],
-        //       atUserIds: uidArr,
-        //       isAtAll: isAtAll,
-        //     },
-        //   }),
-        // })
-        //   // 3. parse
-        //   .then((res) => {
-        //     return res.json();
-        //   })
-        //   .then((json) => console.log(json));
+      fetch(group, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          msgtype: "markdown",
+          markdown: {
+            title: `${title}`,
+            text: content,
+          },
+          at: {
+            atMobiles: [""],
+            atUserIds: uidArr,
+            isAtAll: isAtAll,
+          },
+        }),
+      })
+        // 3. parse
+        .then((res) => {
+          return res.json();
+        })
+        .then((json) => console.log(json));
     }
   },
   // 将null转换为空字符串

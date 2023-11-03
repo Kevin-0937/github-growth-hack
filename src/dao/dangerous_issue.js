@@ -229,45 +229,32 @@ const dingTalkDao = {
       if (atUid != null) {
         uidArr = atUid;
       }
-      console.log(123, JSON.stringify({
-        at: {
-          atMobiles: [""],
-          atUserIds: uidArr,
-          isAtAll: isAtAll,
-        },
-        text: {
-          content: newContent,
-        },
-        msgtype: "text",
-        title: ``,
-      }))
-      console.log('group.url', group.url)
       // 2. send request
-      // 发送请求
-      // fetch(group.url, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     at: {
-      //       atMobiles: [""],
-      //       atUserIds: uidArr,
-      //       isAtAll: isAtAll,
-      //     },
-      //     text: {
-      //       content: newContent,
-      //     },
-      //     msgtype: "text",
-      //     title: ``,
-      //   }),
-      // })
-      //   // 3. parse
-      //   .then((res) => {
-      //     return res.json();
-      //   })
-      //   .then((json) => console.log(json));
+      发送请求
+      fetch(group.url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          at: {
+            atMobiles: [""],
+            atUserIds: uidArr,
+            isAtAll: isAtAll,
+          },
+          text: {
+            content: newContent,
+          },
+          msgtype: "text",
+          title: ``,
+        }),
+      })
+        // 3. parse
+        .then((res) => {
+          return res.json();
+        })
+        .then((json) => console.log(json));
     }
   },
   nullToEmpty(str) {
@@ -332,32 +319,31 @@ const dingTalkDao = {
       if (group.keyword != null) {
         keyword = group.keyword;
       }
-      console.log("imageUrl", group.url)
       // 2. send request
-      // fetch(group.url, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     msgtype: "markdown",
-      //     markdown: {
-      //       title: keyword,
-      //       text: `![](${imageUrl}) \n`,
-      //     },
-      //     at: {
-      //       atMobiles: [""],
-      //       atUserIds: [atUid],
-      //       isAtAll: isAtAll,
-      //     },
-      //   }),
-      // })
-      //   // 3. parse
-      //   .then((res) => {
-      //     return res.json();
-      //   })
-      //   .then((json) => console.log(json));
+      fetch(group.url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          msgtype: "markdown",
+          markdown: {
+            title: keyword,
+            text: `![](${imageUrl}) \n`,
+          },
+          at: {
+            atMobiles: [""],
+            atUserIds: [atUid],
+            isAtAll: isAtAll,
+          },
+        }),
+      })
+        // 3. parse
+        .then((res) => {
+          return res.json();
+        })
+        .then((json) => console.log(json));
     }
   },
 };
